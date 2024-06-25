@@ -1,0 +1,6 @@
+﻿<a href="@Url.Action("GetCartInfo", "Cart")" style="text-decoration:none; color: white; font-weight: bold">
+    <img style="width:25px;height:25px;" src="~/Images/giohang.jpg" /> Cart (@ViewBag.TotalNumber)
+</a>
+@if (TempData["Message"] != null)
+{
+<div class="alert alert-danger">@TempData["Message"]</div>}

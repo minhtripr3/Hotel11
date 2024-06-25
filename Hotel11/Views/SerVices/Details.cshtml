@@ -1,0 +1,52 @@
+﻿@model Hotel11.Models.SerVice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SerVice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceSerVice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceSerVice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageSerVice)
+        </dt>
+        <a href="~/Views/SerVices/Details.cshtml">~/Views/SerVices/Details.cshtml</a>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageSerVice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameSerVice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameSerVice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SerViceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

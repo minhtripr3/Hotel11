@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Hotel11.Models.SerVice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .table-container {
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            border: 1px solid #ff69b4; /* Pink color border */
+            text-align: center;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+    .action-links a {
+        border-radius: 3px;
+        background-color: #e82574;
+        color: white;
+        padding: 5px 10px;
+        text-decoration: none;
+    }
+
+    .action-links1 a {
+        color: #e82574;
+        padding: 5px 10px;
+        text-decoration: none;
+        border-radius: 3px;
+        margin-right: 5px;
+        margin-bottom: 50px;
+    }
+
+    .action-links a:hover {
+        background-color: #d1145c;
+    }
+</style>
+
+<div class="table-container">
+    <h2>DANH SÁCH PHÒNG</h2>
+
+    <p class="action-links1">
+        @Html.ActionLink("Add Room", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                SerViceID
+            </th>
+            <th>
+                Tên dịch vụ
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Hình ảnh phòng
+            </th>
+
+
+
+            <th style="text-align:center;"> Lệnh</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerViceID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameSerVice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceSerVice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageSerVice)
+                </td>
+
+
+                <td class="action-links">
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.SerViceID }) |
+                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.SerViceID }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.SerViceID })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,54 @@
+﻿@model Hotel11.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="margin: 10px auto; width: 600px; height: 520px; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); border: 1px solid #e82574;">
+    <h2 style="text-align: center; color: #333333; font-size: 1rem;">BẠN MUỐN XÓA TÀI KHOẢN NÀY</h2>
+    <div>
+        <hr />
+
+        <dl class="dl-horizontal" style="font-size: 1rem;">
+            <dt style="color: #e82574;">Tên khách hàng</dt>
+            <dd>@Html.DisplayFor(model => model.NameCus)</dd>
+
+            <dt style="color: #e82574;">Số điện thoại</dt>
+            <dd>@Html.DisplayFor(model => model.PhoneCus)</dd>
+
+            <dt style="color: #e82574;">Email</dt>
+            <dd>@Html.DisplayFor(model => model.EmailCus)</dd>
+
+            <dt style="color: #e82574;">Địa chỉ</dt>
+            <dd>@Html.DisplayFor(model => model.DressCus)</dd>
+
+
+            <dt style="color: #e82574;">Thành phố</dt>
+            <dd>@Html.DisplayFor(model => model.CityCus)</dd>
+
+            <dt style="color: #e82574;">Quốc gia</dt>
+            <dd>@Html.DisplayFor(model => model.Country)</dd>
+            <dt style="color: #e82574;">Tài khoản</dt>
+            <dd>@Html.DisplayFor(model => model.TaiKhoan)</dd>
+            <dt style="color: #e82574;">Mật khẩu</dt>
+            <dd>@Html.DisplayFor(model => model.MatKhau)</dd>
+
+            <dt style="color: #e82574;">Ngày sinh</dt>
+            <dd>@Html.DisplayFor(model => model.NgaySinh)</dd>
+
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color" style="text-align: center; margin-top: 20px;">
+                <input type="submit" value="Xóa" class="btn btn-danger" style=" background-color: #e82574; border: none; padding: 10px 20px; /* Added padding */ color: white; /* Set text color to white */border-radius:3px;" />
+                <span style="margin: 0 10px;">|</span>
+                @Html.ActionLink("TRỞ LẠI", "Index")
+            </div>
+        }
+    </div>
+
+</div>
+

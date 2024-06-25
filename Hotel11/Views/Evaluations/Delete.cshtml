@@ -1,0 +1,65 @@
+﻿@model Hotel11.Models.Evaluation
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Evaluation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EvaluationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvaluationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PointEvaluation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointEvaluation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.NameCus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.NameCus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Room.NamePro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room.NamePro)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

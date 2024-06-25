@@ -1,0 +1,221 @@
+﻿@model Hotel11.Models.OrderRoom
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .custom-container {
+        width: 600px;
+        border: 1px solid #e82574;
+        padding: 20px;
+        font-size: 1rem;
+        margin: 3rem auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .btn-primary {
+        background-color: #e82574;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+    }
+
+    .img-thumbnail {
+        width: 100%;
+        height: auto;
+        max-width: 500px;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .mt-5 {
+        margin-top: 3rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .mt-2 {
+        margin-top: 0.5rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .form-group.row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    .form-group .col-md-2 {
+        color: #e82574;
+        flex: 0 0 auto;
+        width: 20%;
+        padding-right: 15px;
+        border-right: 1px solid #ccc;
+    }
+
+    .form-group .col-md-10,
+    .form-group .col-md-8 {
+        flex: 1;
+        padding-left: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        height: 40px;
+    }
+
+    .image-container {
+        display: block;
+        text-align: center;
+    }
+
+    .form-control-file {
+        width: 100%;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="custom-container mt-5">
+    <h2 class="text-center mb-4">Chỉnh Sửa Phòng Khách Sạn</h2>
+    @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="card shadow p-4">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label"> Ngày order</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateOrder, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateOrder, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Tên khách hàng</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NameCus, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NameCus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Số điện thoại</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PhoneCus, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneCus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Địa chỉ</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DressCus, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DressCus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Tổng giá tiền</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Trạng thái phòng</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StatusOrder, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StatusOrder, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Id phòng</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Tên phòng</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RoomName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RoomName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Ngày Check in</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Ngày check out</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Mã giảm giá</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DiscountCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiscountCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group row" style="border:none;">
+                <div class="col-md-10 offset-md-2">
+                    <input type="submit" value="LƯU" class="btn btn-primary" style="border-radius: 2px;" />|
+                    @Html.ActionLink("TRỞ LẠI", "Index", null, new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section scripts {
+    <script>$(function () {
+            // Sự kiện khi ngày CheckOutDate thay đổi
+            $('#CheckOutDate').change(function () {
+                var checkOutDate = $(this).val();
+                var statusOrder = $('#StatusOrder').val();
+
+                // Kiểm tra nếu CheckOutDate đã qua và trạng thái phòng là đã đặt
+                if (checkOutDate && statusOrder === 'True') {
+                    var currentDate = new Date();
+                    var checkOut = new Date(checkOutDate);
+
+                    if (checkOut <= currentDate) {
+                        // Cập nhật trạng thái phòng thành chưa đặt
+                        $('#StatusOrder').val('False');
+                    }
+                }
+            });
+        });</script>
+}

@@ -1,0 +1,105 @@
+﻿@model Hotel11.Models.Customer
+@{
+    ViewBag.Title = "EditCustomerInfo";
+    Layout = "~/Views/Shared/_main.cshtml";
+}
+
+<style>
+    .form-group {
+        width: 80%;
+        max-width: 600px; /* Giới hạn độ rộng tối đa của form */
+        margin: 0 auto; /* Canh giữa form */
+        border: 1px solid #ced4da; /* Viền của form */
+        padding: 15px;
+        border-radius: 4px; /* Độ cong góc */
+        background-color: #ffffff; /* Màu nền của form */
+    }
+
+    .control-label {
+        font-weight: bold;
+        color: #495057; /* Màu chữ */
+    }
+
+    .form-control {
+        width: 100%;
+        box-sizing: border-box; /* Đảm bảo độ rộng tính cả padding và border */
+    }
+
+    .text-danger {
+        color: #dc3545; /* Màu chữ cho validation message */
+    }
+
+    .btn-primary {
+        margin-top: 10px;
+    }
+</style>
+<header class="header">
+    <nav>
+        <div class="nav__bar">
+            <div class="logo">
+                <a href="#"><img src="~/Images/logo.png" alt="logo" /></a>
+            </div>
+            <div class="nav__menu__btn" id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#service">Services</a></li>
+            <li><a href="#explore">Explore</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+                @{ if (ViewBag.Customer == null)
+                    {
+                        <a class="nav-link" href="@Url.Action("Login", "Users")">Sign in Admin</a> }
+                    else
+                    {
+                        <span class="nav-link welcome-message"> @ViewBag.Customer.NameCus</span>
+                        <a class="nav-link" href="@Url.Action("LogOut", "Users")">Sign Out Admin</a> }
+                }
+            </li>
+            <span style="margin-left:20px"> @Html.Action("CartPartial", "Cart")</span>
+        </ul>
+    </nav>
+    <div class="section__container header__container" id="home">
+        <p>Simple - Unique - Friendly</p>
+        <h1>Make Yourself At Home<br />In Our <span>Hotel</span>.</h1>
+    </div>
+</header>
+
+<h2>Edit Customer Information</h2>
+
+@using (Html.BeginForm("EditCustomerInfo", "Cart", FormMethod.Post))
+{
+@Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NameCus, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NameCus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NameCus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PhoneCus, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.PhoneCus, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneCus, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.EmailCus, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.EmailCus, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.EmailCus, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <div class="col-md-offset-2 col-md-10">
+                                                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                                                    </div>
+                                                                </div>}

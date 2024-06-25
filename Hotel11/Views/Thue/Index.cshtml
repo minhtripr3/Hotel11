@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Hotel11.Models.Thue>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenThue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhanTramThue)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenThue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhanTramThue)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ThueID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ThueID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ThueID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,47 @@
+﻿@model Hotel11.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin: 10px auto; width: 600px; height: 520px; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); border: 1px solid #e82574;">
+    <h2 style="text-align: center; color: #333333; font-size: 1rem;">CHI TIẾT TÀI KHOẢN</h2>
+    <div>
+        <hr />
+        <a href="~/Views/Customers/Details.cshtml">~/Views/Customers/Details.cshtml</a>
+        <dl class="dl-horizontal" style="font-size: 1rem;">
+            <dt style="color: #e82574;">Tên khách hàng</dt>
+            <dd>@Html.DisplayFor(model => model.NameCus)</dd>
+
+            <dt style="color: #e82574;">Số điện thoại</dt>
+            <dd>@Html.DisplayFor(model => model.PhoneCus)</dd>
+
+            <dt style="color: #e82574;">Email</dt>
+            <dd>@Html.DisplayFor(model => model.EmailCus)</dd>
+
+            <dt style="color: #e82574;">Địa chỉ</dt>
+            <dd>@Html.DisplayFor(model => model.DressCus)</dd>
+
+
+            <dt style="color: #e82574;">Thành phố</dt>
+            <dd>@Html.DisplayFor(model => model.CityCus)</dd>
+
+            <dt style="color: #e82574;">Quốc gia</dt>
+            <dd>@Html.DisplayFor(model => model.Country)</dd>
+            <dt style="color: #e82574;">Tài khoản</dt>
+            <dd>@Html.DisplayFor(model => model.TaiKhoan)</dd>
+            <dt style="color: #e82574;">Mật khẩu</dt>
+            <dd>@Html.DisplayFor(model => model.MatKhau)</dd>
+
+            <dt style="color: #e82574;">Ngày sinh</dt>
+            <dd>@Html.DisplayFor(model => model.NgaySinh)</dd>
+
+        </dl>
+        <p style="text-align: center; margin-top: 20px;">
+
+            @Html.ActionLink("Trở Về", "Index", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+
+</div>

@@ -1,0 +1,59 @@
+﻿@model Hotel11.Models.Evaluation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Evaluation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EvaluationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EvaluationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PointEvaluation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointEvaluation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.NameCus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.NameCus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Room.NamePro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room.NamePro)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EvaluationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

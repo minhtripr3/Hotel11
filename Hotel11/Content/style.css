@@ -1,0 +1,185 @@
+﻿/* Property Details Section Styles */
+.property-details-section {
+    padding: 60px 0;
+}
+
+.pd-details-text {
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.pd-details-social a {
+    color: #333;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.property-more-pic {
+    margin-bottom: 30px;
+}
+
+.product-big-img {
+    width: 100%;
+}
+
+.product-thumbs img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.pd-desc h4 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.pd-details-tab .tab-item ul.nav {
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 30px;
+}
+
+    .pd-details-tab .tab-item ul.nav li {
+        margin-right: 30px;
+    }
+
+        .pd-details-tab .tab-item ul.nav li a {
+            color: #333;
+            font-size: 16px;
+            padding: 10px 0;
+            display: block;
+        }
+
+            .pd-details-tab .tab-item ul.nav li a.active {
+                color: #007bff;
+                border-bottom: 2px solid #007bff;
+            }
+
+.property-more-table {
+    margin-bottom: 30px;
+}
+
+    .property-more-table table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+        .property-more-table table td.pt-name {
+            width: 40%;
+            font-weight: bold;
+        }
+
+        .property-more-table table td.p-value {
+            width: 60%;
+        }
+
+.property-map iframe {
+    width: 100%;
+    border: 0;
+}
+
+.property-contactus {
+    margin-top: 30px;
+}
+
+.agent-desc img {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.agent-desc .agent-title h5 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.agent-desc .agent-title span {
+    display: block;
+    margin-bottom: 10px;
+    color: #888;
+}
+
+.agent-desc .agent-social a {
+    margin-right: 10px;
+}
+
+.agent-contact-form input,
+.agent-contact-form textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ebebeb;
+}
+
+.agent-contact-form button {
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.property-sidebar {
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+    .property-sidebar h4 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .property-sidebar .sidebar-search {
+        margin-bottom: 30px;
+    }
+
+    .property-sidebar .sidebar-btn .bt-item {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+        .property-sidebar .sidebar-btn .bt-item input {
+            margin-right: 5px;
+        }
+
+    .property-sidebar select,
+    .property-sidebar .slider {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .property-sidebar .search-btn {
+        width: 100%;
+        padding: 10px 20px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+.best-agents .ba-item {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+    .best-agents .ba-item img {
+        width: 60px;
+        height: 60px;
+        margin-right: 15px;
+    }
+
+.best-agents .ba-text h5 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.best-agents .ba-text span {
+    display: block;
+    margin-bottom: 5px;
+    color: #888;
+}
+
+.best-agents .ba-text .property-items {
+    color: #007bff;
+}

@@ -1,0 +1,238 @@
+﻿@using Hotel11.Models
+@model List<CartItem>
+@{
+    ViewBag.Title = "GetCartInfo";
+    Layout = "~/Views/Shared/_main.cshtml";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-danger">@TempData["Message"]</div>
+}
+
+<style>
+    .container {
+        max-width: 90%;
+        margin: 100px auto;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #ddd;
+    }
+
+    .table-bordered th {
+        background-color: #f5f5f5;
+    }
+
+    .py-10 {
+        padding: 10px 0;
+    }
+
+    .alert {
+        margin-bottom: 20px;
+    }
+
+    .section__container {
+        text-align: center;
+        padding: 50px 0;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+    .total-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+</style>
+
+@{
+    var khachhang = Session["TaiKhoan"] as Customer;
+}
+
+<header class="header">
+    <nav>
+        <div class="nav__bar">
+            <div class="logo">
+                <a href="#"><img src="~/Images/logo.png" alt="logo" /></a>
+            </div>
+            <div class="nav__menu__btn" id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#service">Services</a></li>
+            <li><a href="#explore">Explore</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+                @if (khachhang == null)
+                {
+                    <a class="nav-link" href="@Url.Action("Login", "Users")">Sign in Admin</a>
+                }
+                else
+                {
+                    <span class="nav-link welcome-message">@khachhang.NameCus</span>
+                    <a class="nav-link" href="@Url.Action("LogOut", "Users")">Sign Out Admin</a>
+                }
+            </li>
+            <li>
+                <span style="margin-left:20px">@Html.Action("CartPartial", "Cart")</span>
+            </li>
+        </ul>
+    </nav>
+    <div class="section__container header__container" id="home">
+        <p>Simple - Unique - Friendly</p>
+        <h1>Make Yourself At Home<br />In Our <span>Hotel</span>.</h1>
+    </div>
+</header>
+
+<div class="container">
+    <h2 style="text-align: center">THÔNG TIN GIỎ HÀNG</h2>
+    <hr />
+    <table class="table table-bordered py-10">
+        <thead>
+            <tr>
+                <th>MÃ SẢN PHẨM</th>
+                <th>TÊN</th>
+                <th>ẢNH</th>
+                <th>SỐ LƯỢNG</th>
+                <th>ĐƠN GIÁ</th>
+                <th>THUẾ</th>
+                <th>THÀNH TIỀN</th>
+                <th>CHI TIẾT</th>
+                <th>CẬP NHẬT</th>
+                <th>XÓA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductID</td>
+                    <td>@product.NamePro</td>
+                    <td>
+                        <img src="~/Images/@product.ImagePro" style="width: 100px;" />
+                    </td>
+                    @using (Html.BeginForm("UpdateCartItem", "Cart", new { id = product.ProductID }))
+                    {
+                        <td>
+                            <input type="number" min="1" value="@product.Number" name="Number" />
+                        </td>
+                        <td>@product.Price.ToString("C")</td>
+                        <td>
+                            @{
+                                using (var db = new HotelDB10Entities())
+                                {
+                                    var room = db.Rooms.Find(product.ProductID); // Lấy thông tin sản phẩm từ cơ sở dữ liệu
+                                    if (room != null && room.ThueID.HasValue)
+                                    {
+                                        var tax = db.Thues.Find(room.ThueID.Value); // Tìm thuế dựa trên ThueID của sản phẩm
+                                        if (tax != null)
+                                        {
+                                            decimal taxPercent = tax.PhanTramThue ?? 0; // Sử dụng ?? để xử lý giá trị null
+                                            decimal taxAmount = product.Price * product.Number * (taxPercent / 100);
+                                            @taxAmount.ToString("C")
+                                        }
+                                        else
+                                        {
+                                            <span>Không có thuế</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span>Không có thông tin thuế</span>
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>@product.FinalPrice().ToString("C")</td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", "Products", new { id = product.ProductID }, new { @class = "btn btn-success" })
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </td>
+                    }
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteCartItem", "CartC", new { id = product.ProductID }, new { @class = "btn btn-danger", onclick = "return confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?');" })
+                    </td>
+                </tr>
+            }
+
+            <tr style="font-weight:bold; text-align:right; color:red;">
+                <td colspan="7">Tổng số lượng: @ViewBag.TotalNumber</td>
+                <td colspan="3">
+                    @if (ViewBag.TotalPrice != null)
+                    {
+                        @ViewBag.TotalPrice.ToString("C")
+                    }
+                    else
+                    {
+                        <span>Không có thông tin tổng tiền</span>
+                    }
+                </td>
+            </tr>
+            <tr style="font-weight:bold; text-align:center;">
+                <td colspan="10">
+                    @Html.ActionLink("BUY", "ConfirmCart", "Cart", null, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

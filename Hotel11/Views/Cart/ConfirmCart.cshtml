@@ -1,0 +1,177 @@
+﻿@using Hotel11.Models
+@model List<CartItem>
+@{
+    ViewBag.Title = "ConfirmCart";
+    Layout = "~/Views/Shared/_main.cshtml";
+    Customer customer = ViewBag.Customer as Customer;
+}
+<style>
+    /* CSS for ConfirmCart page */
+    .header {
+        background-color: #f8f9fa; /* Màu nền header */
+        padding: 20px 0;
+        text-align: center;
+    }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+    .table-bordered {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+        }
+
+        .table-bordered th {
+            background-color: #f2f2f2;
+        }
+
+        .table-bordered img {
+            max-width: 200px; /* Giới hạn kích thước ảnh */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+    .customer-info {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+        .customer-info td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+        }
+
+            .customer-info td:first-child {
+                font-weight: bold;
+                width: 30%;
+            }
+
+            .customer-info td:last-child {
+                width: 70%;
+                text-align: left;
+            }
+
+        .customer-info .btn {
+            margin: 10px;
+        }
+
+    .footer {
+        background-color: #343a40; /* Màu nền footer */
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+</style>
+<header class="header">
+    <nav>
+        <div class="nav__bar">
+            <div class="logo">
+                <a href="#"><img src="~/Images/logo.png" alt="logo" /></a>
+            </div>
+            <div class="nav__menu__btn" id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#service">Services</a></li>
+            <li><a href="#explore">Explore</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+                @{
+                    if (ViewBag.Customer == null)
+                    {
+                        <a class="nav-link" href="../Users/Login">Sign in Admin</a>
+                    }
+                    else
+                    {
+                        <span class="nav-link welcome-message">@ViewBag.Customer.NameCus</span>
+                        <a class="nav-link" href="../Users/LogOut">Sign Out Admin</a>
+                    }
+                }
+            </li>
+            <span style="margin-left:20px">@Html.Action("CartPartial", "Cart")</span>
+        </ul>
+    </nav>
+    <div class="section__container header__container" id="home">
+        <p>Simple - Unique - Friendly</p>
+        <h1>Make Yourself At Home<br />In Our <span>Hotel</span>.</h1>
+    </div>
+</header>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>MÃ SẢN PHẨM</th>
+            <th>TÊN SẢN PHẨM</th>
+            <th>GIÁ</th>
+            <th>Số lượng</th>
+            <th>ẢNH</th>
+           
+            <th>ĐƠN GIÁ</th>
+            <th>THÀNH TIỀN</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductID</td>
+                <td>@product.NamePro</td>
+                <td>@product.Price</td>
+                <td>@product.Number</td>
+                <td><img src="~/Images/@product.ImagePro" style="width:100%" /></td>
+                
+                <td>@String.Format("{0:0,0}", product.FinalPrice()) VNĐ</td>
+            </tr>
+        }
+        <tr style="font-weight:bold; text-align:right; color:red;">
+            <td colspan="5">Tổng số lượng: @ViewBag.TotalNumber</td>
+            <td colspan="5">Tổng tiền: @ViewBag.TotalPrice</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 style="text-align:center">CUSTOMER INFO</h2>
+<table class="table table-bordered">
+    <tr>
+        <td>NAME: </td>
+        <td>@(customer != null ? customer.NameCus : "N/A")</td>
+    </tr>
+    <tr>
+        <td>PHONE: </td>
+        <td>@(customer != null ? customer.PhoneCus : "N/A")</td>
+    </tr>
+    <tr>
+        <td>ADDRESS: </td>
+        <td>@(customer != null ? customer.DressCus : "N/A")</td>
+    </tr>
+    <tr>
+        <td>DATE: </td>
+        <td>@DateTime.Now.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            @Html.ActionLink("EDIT INFO", "EditCustomerInfo", "Cart", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("AGREE", "AgreeCart", "Cart", null, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+</table>
